@@ -9,7 +9,22 @@ public class Node : MonoBehaviour
 
     // Optional: a friendly label for debugging
     public string nodeLabel;
+    private SpriteRenderer sr;
+    private Color originalColor;
 
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            originalColor = sr.color;
+    }
+
+    public void Highlight(bool state)
+    {
+        if (sr == null) return;
+        sr.color = state ? Color.yellow : originalColor;
+    }
+    
     private void OnDrawGizmos()
     {
         // Draw the node itself
