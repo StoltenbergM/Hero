@@ -6,9 +6,11 @@ public class Node : MonoBehaviour
 {
     [Tooltip("Nodes this node connects to (branching allowed).")]
     public List<Node> connectedNodes = new List<Node>();
-
-    // Optional: a friendly label for debugging
     public string nodeLabel;
+    // so every node can have a type:
+    public enum NodeType { Normal, Town, Battle, Shop }
+    public NodeType nodeType = NodeType.Normal;
+    
     private SpriteRenderer sr;
     private Color originalColor;
 

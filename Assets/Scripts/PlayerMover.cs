@@ -6,6 +6,7 @@ using UnityEngine.InputSystem; // Required for the new Input System
 public class PlayerMover : MonoBehaviour
 {
     public bool canMove = false;
+    public ConfirmUI confirmUI;
     public Node currentNode;    // The node where the player currently stands
     public float moveSpeed = 3f; // Speed of movement
     private bool isMoving = false;
@@ -69,28 +70,91 @@ public class PlayerMover : MonoBehaviour
     private IEnumerator MoveToNode(Node target)
     {
         isMoving = true;
-        ClearHighlights();
 
-        // Smooth move
-        Vector3 start = transform.position;
-        Vector3 end = target.transform.position;
-        float t = 0;
-
-        while (t < 1f)
+        // Find path from current node to target
+        List<Node> path = FindPath(currentNode, target);
+        if (path == null || path.Count == 0)
         {
-            t += Time.deltaTime * moveSpeed;
-            transform.position = Vector3.Lerp(start, end, t);
-            yield return null;
+            Debug.LogWarning("No path found!");
+            isMoving = false;
+            yield break;
         }
 
-        transform.position = end;
-        currentNode = target;
+        // Move step-by-step along the path
+        foreach (Node step in path)
+        {
+            Vector3 start = transform.position;
+            Vector3 end = step.transform.position;
+            float t = 0f;
+            
+            // Before entering the last node
+            if (step == path[path.Count - 1] && step.nodeType != NodeType.Normal)
+            {
+                bool waiting = true;
+                confirmUI.Show(
+                    $"Are you sure you want to enter {step.nodeType}?",
+                    () => { waiting = false; }, // YES
+                    () =>
+                    {
+                        waiting = false;
+                        path.Remove(step); // Stop before this node
+                    } // NO
+                );
 
-        movementPoints = 0;
-        canMove = false;
+                // Wait until player makes choice
+                yield return new WaitUntil(() => !waiting);
+            }
+            
+            while (t < 1f)
+            {
+                t += Time.deltaTime * moveSpeed;
+                transform.position = Vector3.Lerp(start, end, t);
+                yield return null;
+            }
+
+            transform.position = end;
+            currentNode = step;
+            isMoving = false;
+            canMove = false;
+        }
+
         isMoving = false;
+    }
+    
+    // Basic breadth-first search (BFS) for shortest path
+    private List<Node> FindPath(Node start, Node target)
+    {
+        Queue<Node> queue = new Queue<Node>();
+        Dictionary<Node, Node> cameFrom = new Dictionary<Node, Node>();
+        queue.Enqueue(start);
+        cameFrom[start] = null;
 
-        Debug.Log(name + " ended movement at " + target.name);
+        while (queue.Count > 0)
+        {
+            Node current = queue.Dequeue();
+            if (current == target)
+                break;
+
+            foreach (Node neighbor in current.connectedNodes)
+            {
+                if (!cameFrom.ContainsKey(neighbor))
+                {
+                    cameFrom[neighbor] = current;
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+
+        if (!cameFrom.ContainsKey(target))
+            return null; // No path found
+
+        // Reconstruct path
+        List<Node> path = new List<Node>();
+        for (Node n = target; n != start; n = cameFrom[n])
+        {
+            path.Insert(0, n);
+        }
+        return path;
     }
 
     private List<Node> GetReachableNodes(Node start, int distance)
