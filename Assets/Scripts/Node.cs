@@ -7,7 +7,8 @@ public class Node : MonoBehaviour
     [Tooltip("Nodes this node connects to (branching allowed).")]
     public List<Node> connectedNodes = new List<Node>();
     public string nodeLabel;
-    // so every node can have a type:
+    
+    // so every node can have a type - Edit and add later on
     public enum NodeType { Normal, Town, Battle, Shop }
     public NodeType nodeType = NodeType.Normal;
     

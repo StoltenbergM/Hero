@@ -8,27 +8,39 @@ public class ConfirmUI : MonoBehaviour
     public TMP_Text messageText;
     public Button yesButton;
     public Button noButton;
+    public GameObject dimBackground;
 
     private Action onYes;
     private Action onNo;
 
-    public void Show(string message, Action yesAction, Action noAction)
+    public void Show(string message, System.Action yesAction, System.Action noAction)
     {
+        gameObject.SetActive(true);
+        if (dimBackground != null) dimBackground.SetActive(true);
+
         messageText.text = message;
         onYes = yesAction;
         onNo = noAction;
-        gameObject.SetActive(true);
+
+        yesButton.onClick.RemoveAllListeners();
+        noButton.onClick.RemoveAllListeners();
+
+        yesButton.onClick.AddListener(() =>
+        {
+            onYes?.Invoke();
+            Close();
+        });
+
+        noButton.onClick.AddListener(() =>
+        {
+            onNo?.Invoke();
+            Close();
+        });
     }
 
-    public void OnYes()
+    private void Close()
     {
         gameObject.SetActive(false);
-        onYes?.Invoke();
-    }
-
-    public void OnNo()
-    {
-        gameObject.SetActive(false);
-        onNo?.Invoke();
+        if (dimBackground != null) dimBackground.SetActive(false);
     }
 }

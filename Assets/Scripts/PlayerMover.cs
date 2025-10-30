@@ -15,6 +15,8 @@ public class PlayerMover : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("NodeType test: " + Node.NodeType.Normal);
+        
         // Make sure the player starts at the current node
         if (currentNode != null)
             transform.position = currentNode.transform.position;
@@ -81,30 +83,37 @@ public class PlayerMover : MonoBehaviour
         }
 
         // Move step-by-step along the path
-        foreach (Node step in path)
+        for (int i = 0; i < path.Count; i++)
         {
+            Node step = path[i];
             Vector3 start = transform.position;
             Vector3 end = step.transform.position;
             float t = 0f;
-            
-            // Before entering the last node
-            if (step == path[path.Count - 1] && step.nodeType != NodeType.Normal)
+
+            // 🟡 If this is the last step, and it's a special node, ask first
+            if (i == path.Count - 1 && step.nodeType != Node.NodeType.Normal)
             {
                 bool waiting = true;
+                bool proceed = false;
+
                 confirmUI.Show(
                     $"Are you sure you want to enter {step.nodeType}?",
-                    () => { waiting = false; }, // YES
-                    () =>
-                    {
-                        waiting = false;
-                        path.Remove(step); // Stop before this node
-                    } // NO
+                    () => { proceed = true; waiting = false; },
+                    () => { proceed = false; waiting = false; }
                 );
 
-                // Wait until player makes choice
+                // Wait for player to choose
                 yield return new WaitUntil(() => !waiting);
+
+                // If player said No → stop before entering the special node
+                if (!proceed)
+                {
+                    Debug.Log("Player cancelled entry.");
+                    break;
+                }
             }
-            
+
+            // 🟢 Move toward the next node
             while (t < 1f)
             {
                 t += Time.deltaTime * moveSpeed;
@@ -114,11 +123,12 @@ public class PlayerMover : MonoBehaviour
 
             transform.position = end;
             currentNode = step;
-            isMoving = false;
-            canMove = false;
         }
 
+        // When finished, stop movement for this turn
         isMoving = false;
+        canMove = false;
+        ClearHighlights();
     }
     
     // Basic breadth-first search (BFS) for shortest path

@@ -22,7 +22,7 @@ public class DiceRoller : MonoBehaviour
         if (!canRoll) return;
 
         int result = UnityEngine.Random.Range(1, 7); // 1–6 inclusive
-        diceResultText.text = "🎲 You rolled: " + result;
+        diceResultText.text = "You rolled: " + result;
 
         OnDiceRolled?.Invoke(result);
 
