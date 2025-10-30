@@ -1,5 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Drawing;
+
+// Ensure Color refers to Unity's Color type (avoids ambiguity with System.Drawing.Color)
+using Color = UnityEngine.Color;
 
 [ExecuteInEditMode]
 public class Node : MonoBehaviour
@@ -11,7 +15,8 @@ public class Node : MonoBehaviour
     // so every node can have a type - Edit and add later on
     public enum NodeType { Normal, Town, Battle, Shop }
     public NodeType nodeType = NodeType.Normal;
-    
+    public TownController townController;
+
     private SpriteRenderer sr;
     private Color originalColor;
 
@@ -31,7 +36,7 @@ public class Node : MonoBehaviour
     private void OnDrawGizmos()
     {
         // Draw the node itself
-        Gizmos.color = Color.yellow;
+        Gizmos.color = townController != null ? Color.red : Color.yellow;
         Gizmos.DrawSphere(transform.position, 0.08f);
 
         // Draw lines to connected nodes

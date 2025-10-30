@@ -6,7 +6,6 @@ using UnityEngine.InputSystem; // Required for the new Input System
 public class PlayerMover : MonoBehaviour
 {
     public bool canMove = false;
-    public ConfirmUI confirmUI;
     public Node currentNode;    // The node where the player currently stands
     public float moveSpeed = 3f; // Speed of movement
     private bool isMoving = false;
@@ -96,7 +95,7 @@ public class PlayerMover : MonoBehaviour
                 bool waiting = true;
                 bool proceed = false;
 
-                confirmUI.Show(
+                UIManager.Instance.ShowConfirm(
                     $"Are you sure you want to enter {step.nodeType}?",
                     () => { proceed = true; waiting = false; },
                     () => { proceed = false; waiting = false; }

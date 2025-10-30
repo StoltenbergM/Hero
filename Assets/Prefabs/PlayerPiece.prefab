@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6116689792314440596}
   - component: {fileID: 8612219140140306851}
   - component: {fileID: 7891803922176074661}
+  - component: {fileID: 6147219530000356958}
+  - component: {fileID: 4643251737026496906}
   m_Layer: 0
   m_Name: PlayerPiece
   m_TagString: Untagged
@@ -104,6 +106,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMover
   canMove: 1
-  confirmUI: {fileID: 0}
   currentNode: {fileID: 0}
   moveSpeed: 3
+--- !u!114 &6147219530000356958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316009541499690720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e764c4757db7a804088a4f733cf9852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeck
+  ownedCards: []
+--- !u!114 &4643251737026496906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4316009541499690720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe40a8e05a0c6448a247e9f79bb432d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEconomy
+  gold: 1000
