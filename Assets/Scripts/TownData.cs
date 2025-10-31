@@ -5,23 +5,41 @@ using System.Collections.Generic;
 // A SciptableObject of the Town
 // Right-click → Create → Towns → Town Data
 
-[CreateAssetMenu(fileName = "NewTown", menuName = "Towns/Town Data")]
+
+[CreateAssetMenu(fileName = "NewTownData", menuName = "Game/Town Data")]
 public class TownData : ScriptableObject
 {
-    [Header("Basic Info")]
+    [Header("Town Info")]
     public string townName;
-    public TownFaction faction;
-    public Sprite townImage; // for UI display
+    public Faction faction; // e.g. Fire, Water, Earth, etc.
+    public int maxLevel = 3;
 
-    [Header("Upgrade Levels")]
-    [Tooltip("Each level unlocks more cards or features")]
-    public List<TownLevel> levels = new List<TownLevel>();
+    [Header("Shop Inventory by Level")]
+    public List<LevelShop> levels = new List<LevelShop>();
 
     [System.Serializable]
-    public class TownLevel
+    public class LevelShop
     {
-        public string levelName;
-        public List<CardData> availableCards = new List<CardData>();
-        public int upgradeCost = 1000;
+        public List<CardData> availableCards;
     }
+
+    // Get the cards available for a given town level
+    public List<CardData> GetCardsForLevel(int level)
+    {
+        if (levels == null || levels.Count == 0)
+            return new List<CardData>();
+
+        int safeLevel = Mathf.Clamp(level, 0, levels.Count - 1);
+        return levels[safeLevel].availableCards;
+    }
+}
+
+public enum Faction
+{
+    Neutral,
+    Fire,
+    Water,
+    Earth,
+    Air,
+    Shadow
 }

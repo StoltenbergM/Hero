@@ -87,7 +87,7 @@ public class TownUI : MonoBehaviour
         {
             var go = new GameObject("DefenseEntry");
             var text = go.AddComponent<TMP_Text>(); // quick and dirty; prefer a prefab for real UI
-            text.text = card.data.cardName;
+            text.text = card.cardName;
             go.transform.SetParent(defenseListParent, false);
         }
     }

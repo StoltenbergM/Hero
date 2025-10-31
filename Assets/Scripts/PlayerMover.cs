@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections; // Needed for IEnumerator
 using System.Collections.Generic;
-using UnityEngine.InputSystem; // Required for the new Input System
-            
+using UnityEngine.InputSystem;
+using System.Xml; // Required for the new Input System
+
 public class PlayerMover : MonoBehaviour
 {
     public bool canMove = false;
     public Node currentNode;    // The node where the player currently stands
     public float moveSpeed = 3f; // Speed of movement
+    public TownUI townUI;
+    public PlayerDeck playerDeck;
+    public PlayerEconomy playerEconomy;
     private bool isMoving = false;
     private int movementPoints = 0;
     private List<Node> reachableNodes = new List<Node>();
@@ -89,7 +93,7 @@ public class PlayerMover : MonoBehaviour
             Vector3 end = step.transform.position;
             float t = 0f;
 
-            // 🟡 If this is the last step, and it's a special node, ask first
+            // If this is the last step, and it's a special node, ask first
             if (i == path.Count - 1 && step.nodeType != Node.NodeType.Normal)
             {
                 bool waiting = true;
@@ -104,6 +108,17 @@ public class PlayerMover : MonoBehaviour
                 // Wait for player to choose
                 yield return new WaitUntil(() => !waiting);
 
+                // If this is a Town node, open the town UI
+                if (step.nodeType == Node.NodeType.Town)
+                    {
+                        // Get the TownController from this node
+                        TownController town = step.GetComponent<TownController>();
+                        if (town != null)
+                        {
+                            FindFirstObjectByType<TownUI>().ShowTown(town, null, null); // add playerdeck and economy later
+                        }
+                    }
+
                 // If player said No → stop before entering the special node
                 if (!proceed)
                 {
@@ -112,7 +127,7 @@ public class PlayerMover : MonoBehaviour
                 }
             }
 
-            // 🟢 Move toward the next node
+            // Move toward the next node
             while (t < 1f)
             {
                 t += Time.deltaTime * moveSpeed;
