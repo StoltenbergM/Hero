@@ -115,7 +115,7 @@ public class PlayerMover : MonoBehaviour
                         TownController town = step.GetComponent<TownController>();
                         if (town != null)
                         {
-                            FindFirstObjectByType<TownUI>().ShowTown(town, null, null); // add playerdeck and economy later
+                            FindFirstObjectByType<TownUI>(FindObjectsInactive.Include).ShowTown(town, null, null); // add playerdeck and economy later
                         }
                     }
 

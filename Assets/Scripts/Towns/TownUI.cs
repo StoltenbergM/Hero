@@ -23,7 +23,7 @@ public class TownUI : MonoBehaviour
     public Transform shopListParent; // content transform where ShopCardItem prefabs go
     public ShopCardUI shopCardPrefab;
 
-    public Transform defenseListParent; // where defense slots are shown (simple TMP or images)
+    public Transform townDefenseCardsParent; // where defense slots are shown (simple TMP or images)
 
     private TownController activeTown;
     private PlayerDeck activePlayerDeck;
@@ -52,7 +52,8 @@ public class TownUI : MonoBehaviour
         if (townNameText != null) townNameText.text = activeTown.townData.townName;
         if (factionText != null) factionText.text = activeTown.townData.faction.ToString();
         if (levelText != null) levelText.text = $"Level {activeTown.currentLevel + 1}";
-        if (playerGoldText != null) playerGoldText.text = $"Gold: {activeEconomy.gold}";
+        if (playerGoldText != null)
+            playerGoldText.text = (activeEconomy != null) ? $"Gold: {activeEconomy.gold}" : "Gold: ?";
 
         PopulateShop();
         PopulateDefense();
@@ -80,15 +81,17 @@ public class TownUI : MonoBehaviour
     private void PopulateDefense()
     {
         // simple text list for defense cards (you can replace with slots + drag/drop later)
-        for (int i = defenseListParent.childCount - 1; i >= 0; i--)
-            Destroy(defenseListParent.GetChild(i).gameObject);
+        for (int i = townDefenseCardsParent.childCount - 1; i >= 0; i--)
+            Destroy(townDefenseCardsParent.GetChild(i).gameObject);
 
+        if (activePlayerDeck == null) return;
+        
         foreach (var card in activeTown.defenseDeck)
         {
             var go = new GameObject("DefenseEntry");
             var text = go.AddComponent<TMP_Text>(); // quick and dirty; prefer a prefab for real UI
             text.text = card.cardName;
-            go.transform.SetParent(defenseListParent, false);
+            go.transform.SetParent(townDefenseCardsParent, false);
         }
     }
 

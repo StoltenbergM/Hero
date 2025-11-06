@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3396281}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1270748848}
+        m_TargetAssemblyTypeName: TownUI, Assembly-CSharp
+        m_MethodName: CloseTown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3396281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,9 +752,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365160846}
     - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+      propertyPath: playerDeck
+      value: 
+      objectReference: {fileID: 1256310011}
+    - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
       propertyPath: currentNode
       value: 
       objectReference: {fileID: 1807790882}
+    - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+      propertyPath: playerEconomy
+      value: 
+      objectReference: {fileID: 1256310010}
     - target: {fileID: 8612219140140306851, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
       propertyPath: m_Color.b
       value: 0.08495018
@@ -4045,6 +4065,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 1223377497}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1256310010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4643251737026496906, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+  m_PrefabInstance: {fileID: 280177733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe40a8e05a0c6448a247e9f79bb432d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEconomy
+--- !u!114 &1256310011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6147219530000356958, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+  m_PrefabInstance: {fileID: 280177733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e764c4757db7a804088a4f733cf9852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeck
 --- !u!1 &1270748846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,7 +4151,7 @@ MonoBehaviour:
   playerGoldText: {fileID: 1617802632}
   shopListParent: {fileID: 2076197056}
   shopCardPrefab: {fileID: 1632365589979658922}
-  defenseListParent: {fileID: 2117021894}
+  townDefenseCardsParent: {fileID: 2117021894}
 --- !u!114 &1270748849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7174,8 +7216,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2076197056}
+  - component: {fileID: 2076197057}
   m_Layer: 5
-  m_Name: ShopListContainer
+  m_Name: ShopCardList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7200,6 +7243,32 @@ RectTransform:
   m_AnchoredPosition: {x: -700, y: 0}
   m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2076197057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076197055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1001 &2089601264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7308,6 +7377,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106792218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4643251737026496906, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+  m_PrefabInstance: {fileID: 5796840423809320746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe40a8e05a0c6448a247e9f79bb432d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEconomy
+--- !u!114 &2106792219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6147219530000356958, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+  m_PrefabInstance: {fileID: 5796840423809320746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e764c4757db7a804088a4f733cf9852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeck
 --- !u!1 &2117021893
 GameObject:
   m_ObjectHideFlags: 0
@@ -7317,8 +7408,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117021894}
+  - component: {fileID: 2117021895}
   m_Layer: 5
-  m_Name: TownCardListContainer
+  m_Name: TownDefenseCardList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7343,6 +7435,32 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -350}
   m_SizeDelta: {x: 1200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2117021895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117021893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2119528088
 GameObject:
   m_ObjectHideFlags: 0
@@ -7377,7 +7495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 0, y: 440}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119528090
@@ -7988,9 +8106,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365160846}
     - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+      propertyPath: playerDeck
+      value: 
+      objectReference: {fileID: 2106792219}
+    - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
       propertyPath: currentNode
       value: 
       objectReference: {fileID: 574402944}
+    - target: {fileID: 7891803922176074661, guid: 5b4b1b7c96125c74ab25118bda1b6d82, type: 3}
+      propertyPath: playerEconomy
+      value: 
+      objectReference: {fileID: 2106792218}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
