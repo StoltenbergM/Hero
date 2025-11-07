@@ -12,7 +12,8 @@ public class TownData : ScriptableObject
     [Header("Town Info")]
     public string townName;
     public Faction faction; // e.g. Fire, Water, Earth, etc.
-    public int maxLevel = 3;
+    public int upgradeCost = 200;
+    public int maxLevel = 2;
 
     [Header("Shop Inventory by Level")]
     public List<LevelShop> levels = new List<LevelShop>();

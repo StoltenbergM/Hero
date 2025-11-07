@@ -108,22 +108,22 @@ public class PlayerMover : MonoBehaviour
                 // Wait for player to choose
                 yield return new WaitUntil(() => !waiting);
 
-                // If this is a Town node, open the town UI
-                if (step.nodeType == Node.NodeType.Town)
-                    {
-                        // Get the TownController from this node
-                        TownController town = step.GetComponent<TownController>();
-                        if (town != null)
-                        {
-                            FindFirstObjectByType<TownUI>(FindObjectsInactive.Include).ShowTown(town, null, null); // add playerdeck and economy later
-                        }
-                    }
-
                 // If player said No → stop before entering the special node
                 if (!proceed)
                 {
                     Debug.Log("Player cancelled entry.");
                     break;
+                }
+
+                // If this is a Town node, open the town UI
+                if (step.nodeType == Node.NodeType.Town)
+                {
+                    // Get the TownController from this node
+                    TownController town = step.GetComponent<TownController>();
+                    if (town != null)
+                    {
+                        FindFirstObjectByType<TownUI>(FindObjectsInactive.Include).ShowTown(town, null, null); // add playerdeck and economy later
+                    }
                 }
             }
 

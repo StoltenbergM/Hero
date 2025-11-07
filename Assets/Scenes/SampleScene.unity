@@ -633,6 +633,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 168314898}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &190992849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4271062189318686525, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &211394893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1091,6 +1102,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 374242496}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &399344901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6978380434664807180, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &401108333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2790,6 +2812,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765414388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1531314992453319236, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &766140397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4150,7 +4183,7 @@ MonoBehaviour:
   levelText: {fileID: 1740834904}
   playerGoldText: {fileID: 1617802632}
   shopListParent: {fileID: 2076197056}
-  shopCardPrefab: {fileID: 1632365589979658922}
+  shopItemUIPrefab: {fileID: 1632365589979658925}
   townDefenseCardsParent: {fileID: 2117021894}
 --- !u!114 &1270748849
 MonoBehaviour:
@@ -6501,6 +6534,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: connectedNodes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: 'connectedNodes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1914188481}
     - target: {fileID: 7077084955311571434, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
       propertyPath: m_Name
       value: Node (67)
@@ -6515,6 +6556,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 1781608780}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1781608783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+  m_PrefabInstance: {fileID: 1781608780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fbcc241891ecea49ba1554b87aed002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Node
 --- !u!114 &1807790882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
@@ -6907,6 +6959,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: connectedNodes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: 'connectedNodes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2147115009}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: 'connectedNodes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1781608783}
     - target: {fileID: 7077084955311571434, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
       propertyPath: m_Name
       value: Node (68)
@@ -6921,6 +6985,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 1914188478}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1914188481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+  m_PrefabInstance: {fileID: 1914188478}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fbcc241891ecea49ba1554b87aed002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Node
 --- !u!1001 &1937411817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7107,6 +7182,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 1973512853}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2016942921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2016942923}
+  - component: {fileID: 2016942922}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2016942922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016942921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fdf0798a12016e42aa864aff229de97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSystem
+  cardDatabase: {fileID: 0}
+  playerDeck: {fileID: 2106792219}
+  playerEconomy: {fileID: 2106792218}
+  towns:
+  - {fileID: 0}
+--- !u!4 &2016942923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016942921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.24702, y: 0.54421, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2028735497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7207,6 +7331,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbcc241891ecea49ba1554b87aed002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Node
+--- !u!1 &2064934048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2076197055
 GameObject:
   m_ObjectHideFlags: 0
@@ -7218,7 +7347,7 @@ GameObject:
   - component: {fileID: 2076197056}
   - component: {fileID: 2076197057}
   m_Layer: 5
-  m_Name: ShopCardList
+  m_Name: TownShopList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7240,8 +7369,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 0}
-  m_SizeDelta: {x: 300, y: 400}
+  m_AnchoredPosition: {x: 0, y: 90}
+  m_SizeDelta: {x: 1600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076197057
 MonoBehaviour:
@@ -7883,12 +8012,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
       propertyPath: connectedNodes.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
       propertyPath: 'connectedNodes.Array.data[0]'
       value: 
       objectReference: {fileID: 1807790882}
+    - target: {fileID: 5705379631467452975, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
+      propertyPath: 'connectedNodes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1914188481}
     - target: {fileID: 7077084955311571434, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
       propertyPath: m_Name
       value: Node Town
@@ -7942,11 +8075,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
       propertyPath: m_Name
-      value: ShopCardItem
+      value: ShopItemUI
       objectReference: {fileID: 0}
     - target: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705746258949947118, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5542098638835762646, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
       propertyPath: m_Pivot.x
@@ -8028,27 +8165,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7171655617987139189, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+      propertyPath: m_Name
+      value: ShopItemName
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889429889187129892, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+      propertyPath: m_Name
+      value: ShopItemPrice
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4705746258949947118, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1632365589979658925}
   m_SourcePrefab: {fileID: 100100000, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
 --- !u!224 &1632365589979658921 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5542098638835762646, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
   m_PrefabInstance: {fileID: 1632365589979658920}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1632365589979658922 stripped
+--- !u!114 &1632365589979658925
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4705746258949947118, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
-  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2064934048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e6aef7bd152c1d438fa67fa1f7d6408, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fa82749aa1a69d4783024f6f3dda69f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShopCardUI
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItemUI
+  nameText: {fileID: 765414388}
+  priceText: {fileID: 190992849}
+  buyButton: {fileID: 399344901}
 --- !u!1001 &5796840423809320746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8194,3 +8347,4 @@ SceneRoots:
   - {fileID: 1528153351}
   - {fileID: 2093481214}
   - {fileID: 1555106247}
+  - {fileID: 2016942923}

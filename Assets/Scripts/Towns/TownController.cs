@@ -20,6 +20,16 @@ public class TownController : MonoBehaviour
         }
     }
 
+    public bool CanUpgrade() => currentLevel < townData.maxLevel;
+    public void UpgradeTown()
+    {
+        if (CanUpgrade())
+        {
+            currentLevel++;
+            Debug.Log($"{townData.townName} upgraded to level {currentLevel + 1}");
+        }
+    }
+    
     public List<CardData> GetAvailableCards()
     {
         if (townData == null) return new List<CardData>();

@@ -1,49 +1,92 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
-public static class SaveSystem
+/*
+This saves gold, owned cards and active towns for a player
+Can expand later with position, magic etc
+
+Place this on a GameObject in your scene called SaveSystem.
+Assign:
+CardDatabase
+PlayerDeck
+PlayerEconomy
+All your TownController references.
+
+Call SaveSystem.Instance.SaveGame() whenever you want to autosave.
+*/
+
+[System.Serializable]
+public class SaveData
 {
-    private static string savePath => Application.persistentDataPath + "/save.json";
+    public int gold;
+    public List<string> ownedCardNames = new();
+    public List<string> townNames = new();
+    public List<int> townLevels = new();
+}
 
-    [System.Serializable]
-    private class SaveData
+public class SaveSystem : MonoBehaviour
+{
+    public static SaveSystem Instance;
+    public CardDatabase cardDatabase;
+    public PlayerDeck playerDeck;
+    public PlayerEconomy playerEconomy;
+    public List<TownController> towns;
+
+    private string savePath => Path.Combine(Application.persistentDataPath, "save.json");
+
+    void Awake()
     {
-        public int gold;
-        public string[] ownedCards;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
-    public static void Save(PlayerEconomy economy, PlayerDeck deck)
+    public void SaveGame()
     {
-        SaveData data = new SaveData
+        SaveData data = new()
         {
-            gold = economy.gold,
-            ownedCards = deck.ownedCards.ConvertAll(c => c.data.cardName).ToArray()
+            gold = playerEconomy.gold,
+            ownedCardNames = playerDeck.ownedCards.Select(c => c.data.cardName).ToList(),
+            townNames = towns.Select(t => t.townData.townName).ToList(),
+            townLevels = towns.Select(t => t.currentLevel).ToList()
         };
 
         File.WriteAllText(savePath, JsonUtility.ToJson(data, true));
-        Debug.Log("💾 Game saved to " + savePath);
+        Debug.Log($"Game saved: {savePath}");
     }
 
-    public static void Load(PlayerEconomy economy, PlayerDeck deck)
+    public void LoadGame()
     {
         if (!File.Exists(savePath))
         {
-            Debug.Log("No save file found.");
+            Debug.LogWarning("No save file found.");
             return;
         }
 
-        SaveData data = JsonUtility.FromJson<SaveData>(File.ReadAllText(savePath));
-        economy.gold = data.gold;
+        var data = JsonUtility.FromJson<SaveData>(File.ReadAllText(savePath));
 
-        deck.ownedCards.Clear();
-        foreach (var cardName in data.ownedCards)
+        playerEconomy.gold = data.gold;
+        playerDeck.ownedCards.Clear();
+
+        foreach (string name in data.ownedCardNames)
         {
-            // You’ll later replace this lookup with a CardDatabase reference
-            CardData cardData = Resources.Load<CardData>($"Cards/{cardName}");
+            var cardData = cardDatabase.GetCardByName(name);
             if (cardData != null)
-                deck.AddCard(cardData);
+                playerDeck.AddCard(cardData);
         }
 
-        Debug.Log("✅ Game loaded.");
+        for (int i = 0; i < data.townNames.Count && i < towns.Count; i++)
+        {
+            var town = towns.FirstOrDefault(t => t.townData.townName == data.townNames[i]);
+            if (town != null)
+                town.currentLevel = data.townLevels[i];
+        }
+
+        Debug.Log("Game loaded.");
     }
 }

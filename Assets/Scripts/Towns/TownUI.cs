@@ -20,8 +20,8 @@ public class TownUI : MonoBehaviour
     public TMP_Text levelText;
     public TMP_Text playerGoldText;
 
-    public Transform shopListParent; // content transform where ShopCardItem prefabs go
-    public ShopCardUI shopCardPrefab;
+    public Transform shopListParent; // content transform where ShopItemUI prefabs go
+    public ShopItemUI shopItemUIPrefab;
 
     public Transform townDefenseCardsParent; // where defense slots are shown (simple TMP or images)
 
@@ -63,12 +63,22 @@ public class TownUI : MonoBehaviour
     {
         ClearShopList();
 
-        List<CardData> avail = activeTown.GetAvailableCards();
-        foreach (var cardData in avail)
+        // Cards
+        List<CardData> available = activeTown.GetAvailableCards();
+        foreach (var cardData in available)
         {
-            var item = Instantiate(shopCardPrefab, shopListParent);
-            bool canBuy = activeEconomy.gold >= cardData.price && (activePlayerDeck.ownedCards.Count < 10); // example cap
-            item.Setup(cardData, OnBuyCard, canBuy);
+            var item = Instantiate(shopItemUIPrefab, shopListParent);
+            item.Setup(cardData, this);
+        }
+
+        // Town Upgrade option
+        if (activeTown.CanUpgrade())
+        {
+            var upgradeButton = Instantiate(shopItemUIPrefab, shopListParent);
+            var fakeCard = ScriptableObject.CreateInstance<CardData>();
+            fakeCard.cardName = "Upgrade Town";
+            fakeCard.price = activeTown.townData.upgradeCost;
+            upgradeButton.Setup(fakeCard, this);
         }
     }
 
@@ -95,16 +105,55 @@ public class TownUI : MonoBehaviour
         }
     }
 
+    // Card buying logic
     private void OnBuyCard(CardData data)
     {
+        if (activeEconomy == null || activePlayerDeck == null)
+        {
+            Debug.LogWarning("Missing player deck or economy reference.");
+            return;
+        }
+
+        if (activeEconomy.gold < data.price)
+        {
+            Debug.Log("Not enough gold!");
+            return;
+        }
+
+        // Spend gold
         if (activeEconomy.Spend(data.price))
         {
             activePlayerDeck.AddCard(data);
-            RefreshUI(); // update gold and shop buttons
+            Debug.Log($"Bought {data.cardName} for {data.price} gold.");
+
+            // Update UI
+            RefreshUI();
         }
-        else
+    }
+
+    public void TryBuyCard(CardData data)
+    {
+        if (activeEconomy.gold < data.price)
         {
             Debug.Log("Not enough gold!");
+            return;
+        }
+
+        if (activeEconomy.Spend(data.price))
+        {
+            activePlayerDeck.AddCard(data);
+            Debug.Log($"Bought {data.cardName} for {data.price} gold!");
+            RefreshUI();
+        }
+
+        if (data.cardName == "Upgrade Town")
+        {
+        if (activeEconomy.Spend(activeTown.townData.upgradeCost))
+            {
+                activeTown.UpgradeTown();
+                RefreshUI();
+            }
+            return;
         }
     }
 }
