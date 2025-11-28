@@ -7,7 +7,11 @@ public class TownController : MonoBehaviour
     public TownData townData;        // Basic info (name, faction, shop list, etc.)
     public int currentLevel = 0;     // Level of the town
     public List<CardData> defenseDeck = new List<CardData>(); // Cards defending the town
-
+    
+    [Header("Costs")]
+    public int upgradePrice = 200;
+    public int boatPrice = 150;
+    
     private Node node;               // The map node this town is attached to
 
     private void Awake()

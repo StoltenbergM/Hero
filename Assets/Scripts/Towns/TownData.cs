@@ -24,6 +24,15 @@ public class TownData : ScriptableObject
         public List<CardData> availableCards;
     }
 
+    [System.Serializable]
+    public class MagicTier
+    {
+        public int requiredMagicLevel;
+        public List<CardData> magicCards;
+    }
+
+    public List<MagicTier> magicTiers = new List<MagicTier>();
+
     // Get the cards available for a given town level
     public List<CardData> GetCardsForLevel(int level)
     {
