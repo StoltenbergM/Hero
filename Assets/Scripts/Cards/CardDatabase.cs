@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 // Stores all cards in one place so they can be looked up by name
+
 [CreateAssetMenu(fileName = "CardDatabase", menuName = "Cards/Card Database")]
 public class CardDatabase : ScriptableObject
 {
@@ -11,18 +12,20 @@ public class CardDatabase : ScriptableObject
     private void OnEnable()
     {
         lookup = new Dictionary<string, CardData>();
+
         foreach (var card in allCards)
         {
-            if (!lookup.ContainsKey(card.cardName))
-                lookup.Add(card.cardName, card);
+            if (!string.IsNullOrEmpty(card.cardID) && !lookup.ContainsKey(card.cardID))
+                lookup.Add(card.cardID, card);
         }
     }
 
-    public CardData GetCardByName(string name)
+    public CardData GetCardByID(string id)
     {
-        if (lookup.TryGetValue(name, out var card))
+        if (lookup.TryGetValue(id, out var card))
             return card;
-        Debug.LogWarning($"Card not found: {name}");
+
+        Debug.LogWarning("Card not found: " + id);
         return null;
     }
 }

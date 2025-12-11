@@ -1291,9 +1291,9 @@ RectTransform:
   - {fileID: 1834805090}
   m_Father: {fileID: 207806153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 500, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435437840
@@ -2999,17 +2999,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &765414388 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1531314992453319236, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
-  m_PrefabInstance: {fileID: 1632365589979658920}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &766140397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4461,7 +4450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1270748847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4507,8 +4496,11 @@ MonoBehaviour:
   levelText: {fileID: 1740834904}
   playerGoldText: {fileID: 1617802632}
   shopListParent: {fileID: 2076197056}
-  shopItemUIPrefab: {fileID: 1632365589979658925}
-  townDefenseCardsParent: {fileID: 2117021894}
+  shopCardPrefab: {fileID: 0}
+  btnCreatures: {fileID: 1458365553}
+  btnMagic: {fileID: 1741070485}
+  btnUpgrade: {fileID: 1489774709}
+  btnBoat: {fileID: 435437840}
 --- !u!114 &1270748849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5352,9 +5344,9 @@ RectTransform:
   - {fileID: 1839932646}
   m_Father: {fileID: 207806153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 80, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458365553
@@ -5741,9 +5733,9 @@ RectTransform:
   - {fileID: 825155004}
   m_Father: {fileID: 207806153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 710, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489774709
@@ -7077,9 +7069,9 @@ RectTransform:
   - {fileID: 1592820879}
   m_Father: {fileID: 207806153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1741070485
@@ -9164,6 +9156,8 @@ MonoBehaviour:
   townData: {fileID: 11400000, guid: d2d3bb209598e2040bd5e887963a7987, type: 2}
   currentLevel: 0
   defenseDeck: []
+  upgradePrice: 200
+  boatPrice: 150
 --- !u!1001 &1632365589979658920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9298,7 +9292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa82749aa1a69d4783024f6f3dda69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemUI
-  nameText: {fileID: 765414388}
+  titleText: {fileID: 0}
   priceText: {fileID: 190992849}
   buyButton: {fileID: 399344901}
 --- !u!1001 &5796840423809320746

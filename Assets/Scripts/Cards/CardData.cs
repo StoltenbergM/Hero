@@ -3,13 +3,16 @@ using UnityEngine;
 // This script makes a "ScriptableObject" - Each card will be its own .asset file in Unity
 // (created via Right Click → Create → Cards → Card Data)
 
-public enum CardTier { Common, Rare, Epic, Legendary }
-public enum CardType { Creature, Magic, Item }
+public enum CardTier { I, II, III, IV, V, VI, VII, VIII, XI, X }
+public enum CardType { Creature, Magic }
 public enum TownFaction { None, Fire, Water, Earth, Air, Shadow, Light }
 
 [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Card Data")]
 public class CardData : ScriptableObject
 {
+    [Header("Identifiers")]
+    public string cardID;   // unique for save/load
+
     [Header("Basic Info")]
     public string cardName;
     [TextArea] public string description;
@@ -17,7 +20,7 @@ public class CardData : ScriptableObject
     
     [Header("Classification")]
     public CardType cardType = CardType.Creature;
-    public CardTier tier = CardTier.Common;
+    public CardTier tier = CardTier.I;
     public TownFaction faction = TownFaction.None;
 
     [Header("Stats (for creatures)")]

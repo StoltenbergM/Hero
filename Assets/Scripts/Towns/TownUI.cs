@@ -37,6 +37,14 @@ public class TownUI : MonoBehaviour
 
     private ShopCategory currentCategory;
 
+    [Header("Player Deck UI")]
+    public Transform playerSlotParent;
+    public CardSlotUI slotPrefab;
+
+    [Header("Town Defense UI")]
+    public Transform townSlotParent;
+
+
     public void ShowTown(TownController town, PlayerDeck deck, PlayerEconomy economy)
     {
         // In case I forget to hook references to ShowTown
@@ -89,6 +97,48 @@ public class TownUI : MonoBehaviour
         playerGoldText.text = $"Gold: {activeEconomy.gold}";
 
         PopulateCurrentCategory();
+        RefreshUISlots();
+    }
+
+    public void RefreshUISlots()
+    {
+        // Clear old slots
+        foreach (Transform t in playerSlotParent) Destroy(t.gameObject);
+        foreach (Transform t in townSlotParent) Destroy(t.gameObject);
+
+        // PLAYER SLOTS
+        for (int i = 0; i < activePlayerDeck.maxDeckSize; i++)
+        {
+            var slot = Instantiate(slotPrefab, playerSlotParent);
+            slot.isPlayerSlot = true;
+            slot.slotIndex = i;
+
+            if (i < activePlayerDeck.ownedCards.Count)
+            {
+                Card card = activePlayerDeck.ownedCards[i];
+                slot.SetCard(card);
+
+                var ui = Instantiate(shopCardPrefab, slot.transform); // reuse display prefab
+                ui.Setup(card.data, null, false); // no buy, just visual
+            }
+        }
+
+        // TOWN SLOTS
+        for (int i = 0; i < activeTown.maxDefenseSlots; i++)
+        {
+            var slot = Instantiate(slotPrefab, townSlotParent);
+            slot.isPlayerSlot = false;
+            slot.slotIndex = i;
+
+            if (i < activeTown.defenseDeck.Count)
+            {
+                Card card = activeTown.defenseDeck[i];
+                slot.SetCard(card);
+
+                var ui = Instantiate(shopCardPrefab, slot.transform);
+                ui.Setup(card.data, null, false);
+            }
+        }
     }
 
     private void PopulateCurrentCategory()
@@ -177,7 +227,10 @@ public class TownUI : MonoBehaviour
     {
         if (activeEconomy.Spend(data.price))
         {
-            activePlayerDeck.AddCard(data);
+            // default → goes to town defense
+            Card newCard = new Card(data);
+            activeTown.defenseDeck.Add(newCard);
+
             RefreshUI();
         }
     }

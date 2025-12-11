@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class PlayerDeck : MonoBehaviour
 {
     public List<Card> ownedCards = new List<Card>();
+    public int maxDeckSize = 5;
+    public bool HasSpace() => ownedCards.Count < maxDeckSize;
 
     public void AddCard(CardData cardData)
     {
