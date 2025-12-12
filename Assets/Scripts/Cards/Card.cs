@@ -7,34 +7,33 @@ public class Card
 {
     public CardData data;
 
-    // Runtime state (per-player, per-town)
-    public int attack;
-    public int defense;
-    public int speed;
-    public int currentHP;
+    // Runtime modifiers (not stored on the ScriptableObject)
+    public int bonusAttack = 0;
+    public int bonusDefense = 0;
+    public int bonusSpeed = 0;
 
-    public bool exhausted = false;
+    // Optional runtime flags
+    public bool isOwned = false;
+    public bool isDead = false; // if you later need to mark a card as removed
 
     public Card(CardData data)
     {
         this.data = data;
-
-        // Initialize runtime stats
-        attack = data.attack;
-        defense = data.defense;
-        speed = data.speed;
-        currentHP = data.defense; // or HP field if you add one
     }
 
-    public void ResetStats()
+    // Final computed stats (base from CardData + runtime bonuses)
+    public int Attack => (data != null ? data.attack : 0) + bonusAttack;
+    public int Defense => (data != null ? data.defense : 0) + bonusDefense;
+    public int Speed => (data != null ? data.speed : 0) + bonusSpeed;
+
+    public int Price => data != null ? data.price : 0;
+    public string Name => data != null ? data.cardName : "Unknown";
+
+    // Reset runtime bonuses (used when moving out of a buffing area)
+    public void ResetBonuses()
     {
-        attack = data.attack;
-        defense = data.defense;
-        speed = data.speed;
-        currentHP = data.defense;
+        bonusAttack = 0;
+        bonusDefense = 0;
+        bonusSpeed = 0;
     }
-
-    // Helpers
-    public int Price => data.price;
-    public string Name => data.cardName;
 }

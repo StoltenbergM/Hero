@@ -21,30 +21,32 @@ public class CardDragManager : MonoBehaviour
     {
         draggingCard = null;
 
-        // Did we drop onto a slot?
-        if (eventData.pointerCurrentRaycast.gameObject == null) return;
+        if (eventData.pointerCurrentRaycast.gameObject == null) 
+            return;
 
         var slot = eventData.pointerCurrentRaycast.gameObject.GetComponent<CardSlotUI>();
-        if (slot == null) return;
+        if (slot == null) 
+            return;
 
         AttemptMove(slot);
     }
 
     private void AttemptMove(CardSlotUI slot)
     {
-        TownUI townUI = FindObjectOfType<TownUI>();
-        PlayerDeck deck = townUI.activePlayerDeck;
-        TownController town = townUI.activeTown;
+        TownUI townUI = FindFirstObjectByType<TownUI>();
+        var playerDeck = townUI.ActivePlayerDeck;
+        var town = townUI.ActiveTown;
 
         Card card = draggingCard.card;
 
-        if (slot.isPlayerSlot) // town → player
+        // Town → Player
+        if (slot.isPlayerSlot)
         {
-            CardTransferSystem.MoveCardToPlayer(town, deck, card);
+            CardTransferSystem.MoveCardToPlayer(town, playerDeck, card);
         }
-        else // player → town
+        else // Player → Town
         {
-            CardTransferSystem.MoveCardToTown(deck, town, card);
+            CardTransferSystem.MoveCardToTown(playerDeck, town, card);
         }
 
         townUI.RefreshUISlots();

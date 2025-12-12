@@ -12,6 +12,9 @@ public class TownData : ScriptableObject
     [Header("Town Info")]
     public string townName;
     public Faction faction; // e.g. Fire, Water, Earth, etc.
+    public List<CardData> creatureCards; // the 7 main creatures
+    public List<MagicTier> magicTiers;   // unlockable via magic level
+    public int[] defenseSlotsPerLevel;
     public int upgradeCost = 200;
     public int maxLevel = 2;
 
@@ -30,8 +33,6 @@ public class TownData : ScriptableObject
         public int requiredMagicLevel;
         public List<CardData> magicCards;
     }
-
-    public List<MagicTier> magicTiers = new List<MagicTier>();
 
     // Get the cards available for a given town level
     public List<CardData> GetCardsForLevel(int level)

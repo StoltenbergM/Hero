@@ -20,12 +20,12 @@ public class CardDatabase : ScriptableObject
         }
     }
 
-    public CardData GetCardByID(string id)
+    public CardData GetCardByName(string name)
     {
-        if (lookup.TryGetValue(id, out var card))
+        if (lookup.TryGetValue(name, out var card))
             return card;
 
-        Debug.LogWarning("Card not found: " + id);
+        Debug.LogWarning($"Card not found: {name}");
         return null;
     }
 }

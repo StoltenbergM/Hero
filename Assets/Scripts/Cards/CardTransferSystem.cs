@@ -14,7 +14,6 @@ public static class CardTransferSystem
         deck.ownedCards.Remove(card);
         town.AddDefenseCard(card);
 
-        // Apply town buffs
         town.ApplyTownBuffs(card);
 
         return true;
@@ -32,7 +31,6 @@ public static class CardTransferSystem
         town.defenseDeck.Remove(card);
         deck.ownedCards.Add(card);
 
-        // Remove town buffs
         card.ResetBonuses();
 
         return true;

@@ -12,7 +12,7 @@ public class TownController : MonoBehaviour
     public List<Card> defenseDeck = new List<Card>();
 
     [Header("Limits")]
-    public int maxDefenseSlots = 10;
+    public int maxDefenseSlots => townData.defenseSlotsPerLevel[currentLevel];
 
     [Header("Costs")]
     public int upgradePrice = 200;

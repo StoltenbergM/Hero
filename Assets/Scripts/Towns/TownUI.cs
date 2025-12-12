@@ -31,8 +31,12 @@ public class TownUI : MonoBehaviour
     public Button btnUpgrade;
     public Button btnBoat;
 
-    private TownController activeTown;
-    private PlayerDeck activePlayerDeck;
+    [SerializeField] private PlayerDeck activePlayerDeck;
+    [SerializeField] private TownController activeTown;
+
+    public PlayerDeck ActivePlayerDeck => activePlayerDeck;
+    public TownController ActiveTown => activeTown;
+
     private PlayerEconomy activeEconomy;
 
     private ShopCategory currentCategory;
