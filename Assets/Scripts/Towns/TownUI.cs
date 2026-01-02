@@ -106,6 +106,23 @@ public class TownUI : MonoBehaviour
 
     public void RefreshUISlots()
     {
+        // Safe guards:
+        if (activePlayerDeck == null || activeTown == null)
+        {
+            Debug.LogError("RefreshUISlots called without active references");
+            return;
+        }
+        if (playerSlotParent == null || townSlotParent == null)
+        {
+            Debug.LogError("Slot parents not assigned in TownUI");
+            return;
+        }
+        if (slotPrefab == null)
+        {
+            Debug.LogError("slotPrefab is missing!");
+            return;
+        }
+        
         // Clear old slots
         foreach (Transform t in playerSlotParent) Destroy(t.gameObject);
         foreach (Transform t in townSlotParent) Destroy(t.gameObject);
@@ -170,15 +187,15 @@ public class TownUI : MonoBehaviour
 
     private void PopulateCreatures()
     {
-        List<CardData> list = activeTown.GetAvailableCards();
-
-        foreach (var cd in list)
+        Debug.Log("Number of cards: " + activeTown.townData.creatureCards.Count);
+        foreach (var card in activeTown.townData.creatureCards)
         {
-            var item = Instantiate(shopCardPrefab, shopListParent);
-            bool canBuy = activeEconomy.gold >= cd.price &&
-                          activePlayerDeck.ownedCards.Count < 10;
+            bool unlocked = activeTown.CanBuyCard(card);
+            bool canAfford = activeEconomy.gold >= card.price;
 
-            item.Setup(cd, OnBuyCard, canBuy);
+            var item = Instantiate(shopCardPrefab, shopListParent);
+            item.Setup(card, OnBuyCard, unlocked && canAfford);
+            item.SetLocked(!unlocked);
         }
     }
 

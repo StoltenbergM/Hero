@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ade4c98a8765a40b08110e5dfba1c7, type: 3}
+  m_Name: Lumar
+  m_EditorClassIdentifier: Assembly-CSharp::TownData
+  townName: Lumar
+  faction: 4
+  creatureCards:
+  - {fileID: 11400000, guid: 334abfa7794e7744391dca9a7efd9c44, type: 2}
+  - {fileID: 11400000, guid: cf379e628bac5dc44a53b75b05e8271a, type: 2}
+  - {fileID: 11400000, guid: 2cb940c1515f0ff4ab2a966bba15e5a3, type: 2}
+  - {fileID: 11400000, guid: bc7944ba95555134f85aaa34bdcbd427, type: 2}
+  - {fileID: 11400000, guid: eec3ec808116a064b907ea803142b62e, type: 2}
+  - {fileID: 11400000, guid: 18ef69febdadbbc44913e45e156f0c75, type: 2}
+  - {fileID: 11400000, guid: 0cd337caf366cba449091c3c1f073ae3, type: 2}
+  magicTiers: []
+  defenseSlotsPerLevel: 0500000007000000
+  upgradeCost: 200
+  levels: []

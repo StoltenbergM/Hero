@@ -10,6 +10,10 @@ public class ShopCardUI : MonoBehaviour
     public TMP_Text priceText;
     public Button buyButton;
 
+    [Header("Lock Visuals")]
+    public Image artworkImage;      // optional, but recommended
+    public GameObject lockOverlay;  // optional (lock icon, dark overlay)
+
     // Creature Card Mode
     private CardData cardData;
     private Action<CardData> onBuyCard;
@@ -37,9 +41,16 @@ public class ShopCardUI : MonoBehaviour
 
         titleText.text = data.cardName;
         priceText.text = data.price.ToString();
+
+        if (artworkImage != null)
+            artworkImage.sprite = data.artwork;
+
         buyButton.interactable = available;
 
+        buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(() => onBuyCard?.Invoke(cardData));
+
+        gameObject.SetActive(true);
     }
 
     // -------------------------------
@@ -86,5 +97,16 @@ public class ShopCardUI : MonoBehaviour
         buyButton.interactable = available;
 
         buyButton.onClick.AddListener(() => onBuyBoat?.Invoke(boatPrice));
+    }
+
+    public void SetLocked(bool locked)
+    {
+        buyButton.interactable = !locked;
+
+        if (artworkImage != null)
+            artworkImage.color = locked ? Color.gray : Color.white;
+
+        if (lockOverlay != null)
+            lockOverlay.SetActive(locked);
     }
 }

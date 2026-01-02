@@ -1469,6 +1469,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435437838}
   m_CullTransparentMesh: 1
+--- !u!1 &470630148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6945894920912629947, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &487887111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4047,6 +4052,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 817142681908671282, guid: b1178a9108990f14fa4d0a7118facc49, type: 3}
   m_PrefabInstance: {fileID: 993807154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1015668342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1531314992453319236, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1037993423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4586,7 +4602,7 @@ MonoBehaviour:
   levelText: {fileID: 1740834904}
   playerGoldText: {fileID: 1617802632}
   shopListParent: {fileID: 2076197056}
-  shopCardPrefab: {fileID: 0}
+  shopCardPrefab: {fileID: 1632365589979658925}
   btnCreatures: {fileID: 1458365553}
   btnMagic: {fileID: 1741070485}
   btnUpgrade: {fileID: 1489774709}
@@ -7444,6 +7460,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbcc241891ecea49ba1554b87aed002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Node
+--- !u!114 &1771942862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2076977221313145725, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
+  m_PrefabInstance: {fileID: 1632365589979658920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1773789314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9458,7 +9485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TownController
   owner: {fileID: 0}
-  townData: {fileID: 11400000, guid: d2d3bb209598e2040bd5e887963a7987, type: 2}
+  townData: {fileID: 11400000, guid: ae11da8dc40c7bd4ba7bb5a05e659c0c, type: 2}
   currentLevel: 0
   defenseDeck: []
   upgradePrice: 200
@@ -9476,7 +9503,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
       propertyPath: m_Name
-      value: ShopItemUI
+      value: ShopCardUI
       objectReference: {fileID: 0}
     - target: {fileID: 1050045797417933599, guid: f1ed6c158f6617442b3d07c510413e57, type: 3}
       propertyPath: m_IsActive
@@ -9616,9 +9643,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa82749aa1a69d4783024f6f3dda69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemUI
-  titleText: {fileID: 0}
+  titleText: {fileID: 1015668342}
   priceText: {fileID: 190992849}
   buyButton: {fileID: 399344901}
+  artworkImage: {fileID: 1771942862}
+  lockOverlay: {fileID: 470630148}
 --- !u!1001 &5796840423809320746
 PrefabInstance:
   m_ObjectHideFlags: 0

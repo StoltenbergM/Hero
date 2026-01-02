@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Does nothing right now I think? A socket for later when dragging cards
+
+
 public class CardSlotUI : MonoBehaviour
 {
     public Image slotHighlight;

@@ -43,17 +43,21 @@ public class TownController : MonoBehaviour
         }
     }
 
-    public List<CardData> GetAvailableCards()
-    {
-        if (townData == null) return new List<CardData>();
-        return townData.GetCardsForLevel(currentLevel);
-    }
-
     // ------------------------------
     // CARD MANAGEMENT
     // ------------------------------
 
     public bool HasDefenseSpace() => defenseDeck.Count < maxDefenseSlots;
+
+    public bool CanBuyCard(CardData card)
+    {
+        // Level 1 → first 5 cards
+        if (currentLevel == 0)
+            return townData.creatureCards.IndexOf(card) < 5;
+
+        // Level 2 → all cards
+        return true;
+    }
 
     public bool AddDefenseCard(Card card)
     {

@@ -12,11 +12,17 @@ public class TownData : ScriptableObject
     [Header("Town Info")]
     public string townName;
     public Faction faction; // e.g. Fire, Water, Earth, etc.
-    public List<CardData> creatureCards; // the 7 main creatures
     public List<MagicTier> magicTiers;   // unlockable via magic level
-    public int[] defenseSlotsPerLevel;
     public int upgradeCost = 200;
-    public int maxLevel = 2;
+    
+    [Header("Faction Creatures (always 7)")]
+    public List<CardData> creatureCards;
+
+    [Header("Defense slots per level")]
+    public int[] defenseSlotsPerLevel = { 5, 7 };
+
+    [Header("Town progression")]
+    public int maxLevel => defenseSlotsPerLevel.Length; // lenght derived from lenght of the list above
 
     [Header("Shop Inventory by Level")]
     public List<LevelShop> levels = new List<LevelShop>();
